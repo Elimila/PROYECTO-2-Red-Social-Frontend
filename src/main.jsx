@@ -1,10 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+// Importamos React y ReactDOM
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
+// Importamos el componente principal
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+// Importamos Provider y la store de Redux
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+
+// Importamos estilos
+import './index.css'
+
+// Renderizamos la aplicación y le damos acceso a Redux con Provider
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 )
+
