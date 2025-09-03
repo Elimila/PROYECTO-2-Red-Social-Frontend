@@ -4,7 +4,7 @@ import authService from './authService'
 
 // Traemos user/token desde localStorage si existen
 const user = JSON.parse(localStorage.getItem('user'))
-const token = JSON.parse(localStorage.getItem('token'))
+const token = localStorage.getItem('token') // ✅ corregido
 
 // Estado inicial
 const initialState = {
@@ -32,6 +32,15 @@ export const login = createAsyncThunk('auth/login', async (userData, thunkAPI) =
   } catch (error) {
     const message = error.response?.data?.error || 'Error al iniciar sesión'
     return thunkAPI.rejectWithValue(message)
+  }
+})
+
+// Acción asíncrona para logout
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    return await authService.logout()
+  } catch (error) {
+    console.error(error)
   }
 })
 
@@ -66,11 +75,17 @@ export const authSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null
+        state.token = null
+      })
   },
 })
 
-// Exportamos el reset y el reducer
+// Exportamos las acciones y el reducer
 export const { reset } = authSlice.actions
 export default authSlice.reducer
+
+
 
 
