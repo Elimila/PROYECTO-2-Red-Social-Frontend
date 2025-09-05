@@ -22,7 +22,7 @@ const TheHeader = () => {
         <>
           <button onClick={onLogout}>Cerrar sesión</button>
           <Link to="/">Home</Link>
-          <Link to="/profile">Perfil | {user.username}</Link>
+          <Link to="/profile">Perfil | {user.name}</Link> {/* 👈 CORREGIDO */}
         </>
       ) : (
         <>
@@ -35,3 +35,4 @@ const TheHeader = () => {
 }
 
 export default TheHeader
+

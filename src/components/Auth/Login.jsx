@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, reset } from '../../redux/auth/authSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { notification } from 'antd'
 
 // Componente de login
@@ -11,8 +11,20 @@ const Login = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
+  const [justRegistered, setJustRegistered] = useState(false)
 
   const { isError, isSuccess, message } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if (location.state?.registered && !justRegistered) {
+      setJustRegistered(true)
+      notification.success({
+        message: 'Registro exitoso',
+        description: location.state.message || 'Ahora puedes iniciar sesión',
+      })
+    }
+  }, [location, justRegistered])
 
   useEffect(() => {
     if (isSuccess) {
@@ -49,4 +61,5 @@ const Login = () => {
 }
 
 export default Login
+
 

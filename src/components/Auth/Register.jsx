@@ -7,14 +7,13 @@ import { notification } from 'antd'
 // Componente de registro
 const Register = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    username: '',
+    name: '',
     email: '',
     password: '',
-    password2: '',
+    age: '',
   })
 
-  const { firstName, username, email, password, password2 } = formData
+  const { name, email, password, age } = formData
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -24,14 +23,23 @@ const Register = () => {
   useEffect(() => {
     if (isSuccess) {
       notification.success({ message: 'Éxito', description: message })
-      navigate('/login')
+
+      // ✅ Redirección con state para mostrar notificación en Login
+      setTimeout(() => {
+        navigate('/login', {
+          state: {
+            registered: true,
+            message,
+          },
+        })
+        dispatch(reset())
+      }, 1000)
     }
 
     if (isError) {
       notification.error({ message: 'Error', description: message })
+      setTimeout(() => dispatch(reset()), 2000)
     }
-
-    dispatch(reset())
   }, [isSuccess, isError, message, dispatch, navigate])
 
   const onChange = (e) => {
@@ -42,27 +50,25 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if (password !== password2) {
-      return notification.error({
-        message: 'Error',
-        description: 'Las contraseñas no coinciden',
-      })
+    const userData = {
+      name,
+      email,
+      password,
+      age: parseInt(age) || null,
     }
 
-    dispatch(register(formData))
+    dispatch(register(userData))
   }
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="firstName" value={firstName} onChange={onChange} placeholder="Nombre" />
-      <input type="text" name="username" value={username} onChange={onChange} placeholder="Usuario" />
+      <input type="text" name="name" value={name} onChange={onChange} placeholder="Nombre" />
       <input type="email" name="email" value={email} onChange={onChange} placeholder="Correo" />
       <input type="password" name="password" value={password} onChange={onChange} placeholder="Contraseña" />
-      <input type="password" name="password2" value={password2} onChange={onChange} placeholder="Repetir contraseña" />
+      <input type="number" name="age" value={age} onChange={onChange} placeholder="Edad (opcional)" />
       <button type="submit">Registrarse</button>
     </form>
   )
 }
 
 export default Register
-
