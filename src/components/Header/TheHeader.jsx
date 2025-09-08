@@ -22,7 +22,8 @@ const TheHeader = () => {
         <>
           <button onClick={onLogout}>Cerrar sesión</button>
           <Link to="/">Home</Link>
-          <Link to="/profile">Perfil | {user.name}</Link> {/* 👈 CORREGIDO */}
+          <Link to="/profile">Perfil | {user.name}</Link>
+          <Link to="/add-post">Crear Post</Link> {/* ✅ Enlace agregado */}
         </>
       ) : (
         <>
@@ -35,4 +36,3 @@ const TheHeader = () => {
 }
 
 export default TheHeader
-
