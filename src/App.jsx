@@ -10,7 +10,8 @@ import Profile from './components/Profile/Profile'
 import Footer from './components/Footer/Footer'
 import Home from './components/Home/Home'
 import PostDetail from './components/Posts/PostDetail'
-import AddPost from './components/Posts/AddPost'
+import EditPost from "./components/Posts/EditPost"
+import CreatePost from "./components/Posts/CreatePost"
 
 function App() {
   return (
@@ -19,15 +20,14 @@ function App() {
         <BrowserRouter>
           <TheHeader />
           <Routes>
-            {/* Esta es la línea que soluciona el problema */}
             <Route path='/' element={<Navigate to='/home' />} />
-            
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/home' element={<Home />} />
             <Route path='/post/:id' element={<PostDetail />} />
-            <Route path='/add-post' element={<AddPost />} />
+            <Route path="/edit-post/:id" element={<EditPost />} />
+            <Route path="/add-post" element={<CreatePost />} /> {/* ✅ corregido */}
           </Routes>
           <Footer />
         </BrowserRouter>
@@ -37,6 +37,7 @@ function App() {
 }
 
 export default App
+
 
 
 

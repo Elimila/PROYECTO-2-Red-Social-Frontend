@@ -1,0 +1,11 @@
+// src/styles/pages/_postdetail.scss
+.post-detail-container {
+  padding: 2rem;
+
+  .post-detail-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 8px;
+  }
+}
