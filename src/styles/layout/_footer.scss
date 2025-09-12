@@ -1,0 +1,21 @@
+@use "../base/variables" as v;
+
+.main-footer {
+  background: linear-gradient(
+    45deg,
+    rgba(166, 139, 250, 0.85), // morado con transparencia
+    rgba(248, 161, 209, 0.85)  // rosado con transparencia
+  );
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: auto; // ✅ asegura que se quede abajo
+  width: 100%;
+
+  p {
+    margin: 0;
+    letter-spacing: 1px;
+  }
+}

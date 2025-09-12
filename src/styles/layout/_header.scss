@@ -1,0 +1,73 @@
+@use "../base/variables" as v;
+
+.main-header {
+  background: linear-gradient(
+    45deg,
+    rgba(166, 139, 250, 0.9), 
+    rgba(248, 161, 209, 0.9)
+  );
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .brand {
+      font-family: 'Pacifico', cursive; // ✅ estilo manuscrito
+      font-size: 2.5rem;
+      font-weight: normal;
+      background: linear-gradient(
+        90deg,
+        #f58529,  // naranja
+        #dd2a7b,  // rosa fuerte
+        #8134af,  // morado
+        #515bd4   // azul
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15); // ✅ mejor contraste
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s ease;
+
+        &:hover {
+          color: v.$bg-color;
+        }
+      }
+
+      button {
+        background: white;
+        color: v.$primary-color;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s ease;
+
+        &:hover {
+          background: v.$secondary-color;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+

@@ -9,8 +9,8 @@ import App from './App.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
-// Importamos estilos
-import './index.css'
+// ✅ Importamos los estilos globales en SASS
+import './styles/main.scss'
 
 // Renderizamos la aplicación y le damos acceso a Redux con Provider
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -20,4 +20,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 )
-

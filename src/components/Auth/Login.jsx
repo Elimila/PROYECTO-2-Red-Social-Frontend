@@ -4,7 +4,6 @@ import { login, reset } from '../../redux/auth/authSlice'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { notification } from 'antd'
 
-// Componente de login
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' })
   const { email, password } = formData
@@ -29,21 +28,17 @@ const Login = () => {
   useEffect(() => {
     if (isSuccess) {
       notification.success({ message: 'Éxito', description: message })
-      setTimeout(() => {
-        navigate('/profile')
-      }, 1000)
+      setTimeout(() => navigate('/profile'), 1000)
     }
-
     if (isError) {
       notification.error({ message: 'Error', description: message })
     }
-
     dispatch(reset())
   }, [isSuccess, isError, message, dispatch, navigate])
 
   const onChange = (e) => {
     const { name, value } = e.target
-    setFormData((prevState) => ({ ...prevState, [name]: value }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const onSubmit = (e) => {
@@ -52,14 +47,21 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <input type="email" name="email" value={email} onChange={onChange} placeholder="Correo" />
-      <input type="password" name="password" value={password} onChange={onChange} placeholder="Contraseña" />
-      <button type="submit">Iniciar sesión</button>
-    </form>
+    <div className="auth-page">
+      <div className="form-container">
+        <h2>Iniciar sesión</h2>
+        <form onSubmit={onSubmit}>
+          <input type="email" name="email" value={email} onChange={onChange} placeholder="Correo" />
+          <input type="password" name="password" value={password} onChange={onChange} placeholder="Contraseña" />
+          <button type="submit">Iniciar sesión</button>
+        </form>
+      </div>
+    </div>
   )
 }
 
 export default Login
+
+
 
 

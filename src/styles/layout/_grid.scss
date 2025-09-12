@@ -1,0 +1,12 @@
+@use "../base/variables" as v;
+
+html, body, #root {
+  height: 100%;
+}
+
+.App {
+  /* para empujar el footer al fondo cuando hay poco contenido */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

@@ -13,8 +13,15 @@ const createComment = async (postId, formData, token) => {
   return res.data;
 };
 
+// ✅ AÑADE ESTA FUNCIÓN AL SERVICIO
+const getCommentsByPost = async (postId) => {
+  const res = await axios.get(`${API_URL}/post/${postId}`);
+  return res.data;
+};
+
 const commentService = {
   createComment,
+  getCommentsByPost, // ✅ EXPORTA LA NUEVA FUNCIÓN
 };
 
 export default commentService;

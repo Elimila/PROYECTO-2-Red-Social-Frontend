@@ -2,11 +2,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../redux/auth/authSlice'
 
-// Componente Header
 const TheHeader = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
   const { user } = useSelector((state) => state.auth)
 
   const onLogout = () => {
@@ -15,24 +13,31 @@ const TheHeader = () => {
   }
 
   return (
-    <nav>
-      <h1>Red Social</h1>
-
-      {user ? (
-        <>
-          <button onClick={onLogout}>Cerrar sesión</button>
-          <Link to="/">Home</Link>
-          <Link to="/profile">Perfil | {user.name}</Link>
-          <Link to="/add-post">Crear Post</Link> {/* ✅ Enlace agregado */}
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Registro</Link>
-        </>
-      )}
-    </nav>
+    <header className="main-header">
+      <nav className="nav-bar">
+        {/* ✅ Cambiado el nombre de la marca */}
+        <h1 className="brand">BiTViral</h1>
+        <div className="nav-links">
+          {user ? (
+            <>
+              <Link to="/home">Home</Link>
+              <Link to="/profile">Perfil | {user.name}</Link>
+              <Link to="/add-post">Crear Post</Link>
+              <button onClick={onLogout}>Cerrar sesión</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Registro</Link>
+            </>
+          )}
+        </div>
+      </nav>
+    </header>
   )
 }
 
 export default TheHeader
+
+
+

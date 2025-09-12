@@ -1,0 +1,16 @@
+@use './variables' as v;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: v.$font-family;
+  font-size: v.$base-font-size;
+  background-color: v.$bg-color;
+  color: v.$text-color;
+  line-height: 1.6;
+}
+
